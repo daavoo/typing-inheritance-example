@@ -1,0 +1,35 @@
+name: ci
+
+on:
+  push:
+    paths-ignore:
+      - '*.md'
+    branches:
+      - master
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.6
+    - uses: actions/cache@v1
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    - name: Install requirements
+      run: |
+        pip install -r requirements/dev.txt
+    - name: Lint with black & flake8
+      run: |
+        black .
+        flake8 .
+    - name: Execute the example
+      run: python typing_inheritance.py
+
+
