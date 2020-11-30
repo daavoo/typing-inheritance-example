@@ -19,12 +19,12 @@ jobs:
     - uses: actions/cache@v1
       with:
         path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-
     - name: Install requirements
       run: |
-        pip install -r requirements/dev.txt
+        pip install -r requirements.txt
     - name: Lint with black & flake8
       run: |
         black .
