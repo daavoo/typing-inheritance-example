@@ -6,6 +6,6 @@ See diagram:
 ![Diagram](images/diagram.png)
 
 
-It seems PyCharm cannot resolve this double inheritance and raises a specific warning.
+It seems PyCharm warn us about unresolved double inheritance in Python.
 
 ![Pycharm Warning](images/pycharm_warning.png)
